@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<section class="timer-card">
+  <header class="timer-card__header">
+    <h1 class="timer-title">{{ title }}</h1>
+  </header>
+
+  <div class="circular-timer">
+    <div class="circular-timer__inner">
+      <p class="timer-status" data-timer-status>{{ status }}</p>
+      <p class="timer-display" data-timer-display>{{ display_time }}</p>
+    </div>
+  </div>
+
+  <div class="timer-controls">
+    <button class="btn btn-primary" type="button" data-action="start">開始</button>
+    <button class="btn btn-secondary" type="button" data-action="reset">リセット</button>
+  </div>
+
+  <footer class="timer-progress">
+    <h2 class="timer-progress__heading">今日の進捗</h2>
+    <div class="timer-progress__stats">
+      <div class="timer-progress__stat">
+        <span class="stat-value" data-completed-sessions>{{ completed_sessions }}</span>
+        <span class="stat-label">完了</span>
+      </div>
+      <div class="timer-progress__stat">
+        <span class="stat-value" data-total-focus>{{ display_focus_time }}</span>
+        <span class="stat-label">集中時間</span>
+      </div>
+    </div>
+  </footer>
+</section>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ url_for('static', filename='js/timer.js') }}" defer></script>
+{% endblock %}
